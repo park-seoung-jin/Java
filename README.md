@@ -1,70 +1,33 @@
-import java.util.*;
+점심 메뉴 룰렛
+프로그램 설명
+이 프로그램은 점심 시간마다 항상 메뉴를 고민하는 친구를 위해 만들어진 돌림판 입니다.
+정문과 청대 사거리 중 하나를 선택한 뒤, 메뉴를 룰렛으로 정하고
+선택된 메뉴를 판매하는 밥집들 중에서 다시 한 번 룰렛을 돌려
+메뉴 선정에 도움을 주기 위해 계획했습니다.
 
-public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
+사용자 정의
 
-        List<String> frontCategories = Arrays.asList("한국음식", "베트남음식", "프랑스 음식", "일본 음식", "필리핀 음식");
-        List<List<String>> frontStores = Arrays.asList(
-                Arrays.asList("비빔밥", "갈비찜", "떡볶이", "삼계탕"),
-                Arrays.asList("닭구이", "쌀국수", "반미", "반쎄오", "껌땀", "보네"),
-                Arrays.asList("마카롱", "마들렌", "밀푀유", "브리또", "바게트", "브리오슈", "오믈렛"),
-                Arrays.asList("초밥", "라면", "소바"),
-                Arrays.asList("아보도", "시시그"));
+룰렛(Roulette)
+사용자가 이 프로그램을 사용해야 하는 이유는?
+점심 시간때가 되면 어떤 음식을 먹을까 하고 고민을 오래하거나 선택하는 시간이 
+오래 걸리는 사람들을 위해 만들었습니다.
 
-        List<String> backCategories = Arrays.asList("한식", "프랑스 양식", "중식", "일식", "필리핀 음식");
-        List<List<String>> backStores = Arrays.asList(
-                Arrays.asList("닭갈비", "김밥", "불고기", "송편", "된장찌개", "냉면", "화채", "제육볶음", "오징어볶음", "육전"),
-                Arrays.asList("봉골레", "투움바", "까르보나라", "알프레도", "아라비아따"),
-                Arrays.asList("마라탕", "짜장면"),
-                Arrays.asList("텐동", "가라아게", "타코야키"),
-                Arrays.asList("불랄로", "레촌"));
 
-        String selectedGate;
-        List<String> selectedCategories = null;
-        List<List<String>> selectedStores = null;
+전체 동작 과정
 
-        while (true) {
-            System.out.println("==== 식사 메뉴 룰렛 ====");
-            System.out.print("정문 또는 청주 사거리을 선택하세요: ");
-            String input = scanner.nextLine().trim();
+정문 or 청대 사거리 중 한 곳 선택
+해당 구역 내 메뉴 룰렛 실행
+선택된 메뉴를 판매하는 밥집 목록 중 돌림판 실행
+최종 메뉴 + 밥집 결정
+동작 과정 설명
+문을 선택하면, 해당 구역에 있는 다양한 음식 메뉴 중 하나가 돌림판 을 통해 선택됩니다.
+선택된 메뉴가 있는 여러가지 밥집들로 구성하여 다시 돌림판을 돌려 최종 밥집을 정합니다.
 
-            if (input.equalsIgnoreCase("정문")) {
-                selectedGate = "정문";
-                selectedCategories = frontCategories;
-                selectedStores = frontStores;
-                break;
-            } else if (input.equalsIgnoreCase("청주대 사거리")) {
-                selectedGate = "청주대사거리";
-                selectedCategories = backCategories;
-                selectedStores = backStores;
-                break;
-            } else {
-                System.out.println("⚠️ 잘못 입력하셨습니다. '정문' 또는 '청주대 사거리'으로 다시 입력해주세요.\n");
-            }
-        }
+사용자는 누구인가?
+수업시간에 도움을 주고 같이 먹을 수 있게 이민성 형님을 위해 만들어 보았습니다.
 
-        System.out.println("룰렛을 돌리는 중...⏱\uFE0F");
-        Thread.sleep(300);
-        System.out.println("🎯 " + selectedGate + " 선택됨!");
+그 사용자가 얻을 수 있는 이점은?
 
-        Thread.sleep(1000);
-        System.out.println("음식 종류를 무작위로 선택합니다...\uD83C\uDF72");
-        Thread.sleep(1000);
-
-        int categoryIndex = random.nextInt(selectedCategories.size());
-        String selectedCategory = selectedCategories.get(categoryIndex);
-        System.out.println("선택된 음식 종류는 " + selectedCategory + "입니다!🎯");
-
-        Thread.sleep(1000);
-        System.out.println("해당 음식 종류의 가게 중 하나를 선택합니다...⏱\uFE0F");
-        Thread.sleep(1000);
-
-        List<String> storeList = selectedStores.get(categoryIndex);
-        String selectedStore = storeList.get(random.nextInt(storeList.size()));
-        System.out.println("오늘의 점심은 " + selectedStore + "에서 어떤가요?\uD83D\uDE09");
-
-        scanner.close();
-    }
-}
+메뉴 선정에 고민이 없이 돌림판을 활용해 바로 메뉴 선정을 할 수 있습니다.
+랜덤으로 메뉴와 밥집을 정하므로 스트레스 없이 선택할 수 있습니다.
+다른 메뉴와 식당을 경험할 수 있어 다양성도 챙길 수 있습니다.
